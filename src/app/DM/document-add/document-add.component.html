@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate (ngSubmit)="onSubmit(angForm.value)">
+
+      <div class="form-group">
+        <label class="col-md-4">Docuemnt ID</label>
+        <input type="number" class="form-control" formControlName="docuemnt_Id" #file_type />
+      </div>
+      <div
+        *ngIf="angForm.controls['docuemnt_Id'].invalid && (angForm.controls['docuemnt_Id'].dirty || angForm.controls['docuemnt_Id'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['docuemnt_Id'].errors.required">
+          Docuemnt ID is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Docuemnt Name</label>
+        <input type="text" class="form-control" formControlName="document_name" #document_name />
+      </div>
+      <div
+        *ngIf="angForm.controls['document_name'].invalid && (angForm.controls['document_name'].dirty || angForm.controls['document_name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['document_name'].errors.required">
+          Docuemnt Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Docuemnt Type</label>
+        <input type="text" class="form-control" formControlName="document_type" #document_type />
+      </div>
+      <div
+        *ngIf="angForm.controls['document_type'].invalid && (angForm.controls['document_type'].dirty || angForm.controls['document_type'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['document_type'].errors.required">
+          Docuemnt Type is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add
+          Document</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="showDocumentSection">
+    <app-document-list [record]="document"></app-document-list>
+  </div>
+
+</div>

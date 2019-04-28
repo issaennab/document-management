@@ -1,0 +1,45 @@
+<!-->table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"> Docuemnt Name </th>
+      <th scope="col"> File Type </th>
+      <th scope="col"> Docuemnt Type </th>
+      <th scope="col"> Action </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let document of documentList, index as i" [class.selected]="document === selectedDocument"
+    (click)="onSelect(document)">
+      <th scope="row">
+        {{i+1}}
+      </th>
+      <td> {{document.docuemntName + ' - ' + i}} </td>
+      <td> {{document.fileType}} </td>
+      <td> {{document.documentType}} </td>
+      <td> <input type="button" value="Delete" (click)="onRemove(document)"/> </td>
+    </tr>
+
+  </tbody>
+</table-->
+
+
+<div *ngIf="selectedDocument">
+ 
+    <h2>{{selectedDocument.docuemntName | uppercase}} </h2>
+
+</div>
+
+<br><br>
+
+
+<ag-grid-angular 
+    style="width: 100%; height: 200px;" 
+    class="ag-theme-balham table table-bordered"
+    [rowData]="documentList" 
+    [columnDefs]="columnDefs"
+    [floatingFilter]="true">
+</ag-grid-angular>
+
+
+<br><br>
